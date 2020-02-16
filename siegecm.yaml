@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urls
+data:
+  urls.txt: |
+    https://api.whynot.play.com:6443/api/v1/namespaces
+    https://api.whynot.play.com:6443/api/v1/persistentvolumes
+    https://api.whynot.play.com:6443/api/v1/pods

@@ -1,0 +1,44 @@
+apiVersion: "v1"
+kind: "DeploymentConfig"
+metadata:
+  labels:
+    app: siegeattack
+  name: siegeattack
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: siegeattack
+    spec:
+      containers:
+      - name: siegeattack
+        image: quay.io/grakover/siege:latest       
+        imagePullPolicy: Always
+        env:
+        - name: CONCURRENT
+          value: "200"
+        - name: DELAY
+          value: "5"
+        - name: TOKEN
+          value: "Svdpm2GqXGSf25qGwsNJDfDgne94bMtBnoIcdEtwZBc"
+#        command: ["/usr/bin/sleep"]
+#        args: ["1000"]
+        command: ["/home/grakover/siege/bin/siege"]
+        args: ["-H", "Authorization: Bearer Svdpm2GqXGSf25qGwsNJDfDgne94bMtBnoIcdEtwZBc", "-H", "Accept: application/json", "-c$CONCURRENT", "-d$DELAY", "-f", "/home/grakover/siege/var/urls.txt"]
+        volumeMounts:
+        - mountPath: /home/grakover/siege/var/urls.txt
+          name: urls
+          subPath: urls.txt
+      volumes:
+      - configMap:
+          defaultMode: 0777
+          name: urls
+        name: urls
+  triggers:
+  - type: ConfigChange
+  strategy:
+    type: Rolling
+  paused: false
+  revisionHistoryLimit: 2
+  minReadySeconds: 0
