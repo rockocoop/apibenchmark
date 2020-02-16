@@ -1,1 +1,14 @@
 Tool for running api bench mark tests via kubernetes 
+
+
+This project utilizes the siege tool (https://www.joedog.org/siege-home/) for running load testing on 
+an api frontend.
+
+This project utilizes a conainerized version of the tool, allowing it to be brought up on OpenShift.
+The idea being to define a set of API calls, and then scaling up the replicas to increase the load.
+
+
+The included deploymentconfig and configmap yamls cover a scenario for testing the OpenShift console API
+
+Review the deployment config to see the environmental variables (for testing against the OpenShift API
+a token must first be generated and added to deploymentconfig)
