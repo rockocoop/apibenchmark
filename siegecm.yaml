@@ -4,6 +4,6 @@ metadata:
   name: urls
 data:
   urls.txt: |
-    https://api.whynot.play.com:6443/api/v1/namespaces
-    https://api.whynot.play.com:6443/api/v1/persistentvolumes
-    https://api.whynot.play.com:6443/api/v1/pods
+    https://api.ocp4.idf-cts.com:6443/api/v1/namespaces
+    https://api.ocp4.idf-cts.com:6443/api/v1/persistentvolumes
+    https://api.ocp4.idf-cts.com:6443/api/v1/pods
